@@ -4,3 +4,7 @@
 data/
 notsplitted/
 
+__pycache__/
+/__pycache__
+
+First_model.h5

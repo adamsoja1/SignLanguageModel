@@ -6,6 +6,7 @@ import os
 import shutil
 import random
 
+
 class Preparation:
     def __init__(self, path:str):
         self.path = path
@@ -93,15 +94,6 @@ class Preparation:
         return os.listdir(self.path)
         
         
-    def saveImage(self,sign):
-        pass
-    
-    
-    def preprocessImage(self):
-        pass
-    
-    
-    
     
     
 prep = Preparation('notsplitted')    
