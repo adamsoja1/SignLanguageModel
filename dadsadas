@@ -1,0 +1,23 @@
+[33mcommit 98281f638b763eeec8c7dcddb851de9c99c26ce0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Rebek2 <74105281+Rebek2@users.noreply.github.com>
+Date:   Sun Mar 12 19:24:54 2023 +0100
+
+    update
+
+[33mcommit a60f6d1f49462642dfe43a89f90698e3e3d6b2ca[m
+Author: Rebek2 <74105281+Rebek2@users.noreply.github.com>
+Date:   Sun Mar 12 18:46:03 2023 +0100
+
+    Trained new model, results saved to txt
+
+[33mcommit 68679e581dc87529ed3399a41b41446c0ce3d9e8[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Rebek2 <74105281+Rebek2@users.noreply.github.com>
+Date:   Fri Mar 10 17:42:31 2023 +0100
+
+     Trained first model with results saved to txt files, prepared generators, created dictionary
+
+[33mcommit 004a709744fabf261e93b725a1f737ed4342e431[m
+Author: Rebek2 <74105281+Rebek2@users.noreply.github.com>
+Date:   Thu Mar 9 21:22:36 2023 +0100
+
+    Added data preparation, data reader and began generator

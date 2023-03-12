@@ -13,23 +13,27 @@ class GeneratorCreator:
         self.batch_size = batch_size
         
     def getGenerators(self):
-        datagen = ImageDataGenerator(
+        datagen_TRAIN = ImageDataGenerator(
                         rescale=1./255,
-                        shear_range=0.1,
-                        zoom_range=0.1,
-                        horizontal_flip=True)
+                        shear_range=0.3,
+                        zoom_range=0.3,
+                        brightness_range=(0.2, 0.8),
+                        )
         
-        train_generator = datagen.flow_from_directory(
+        datagen_TEST = ImageDataGenerator(
+                        rescale=1./255)
+        
+        train_generator = datagen_TRAIN.flow_from_directory(
                                             self.train,
                                             target_size=(200,200),
                                             batch_size=self.batch_size)
         
-        valid_generator = datagen.flow_from_directory(
+        valid_generator = datagen_TEST.flow_from_directory(
                                             self.valid,
                                             target_size=(200,200),
                                             batch_size=self.batch_size)
         
-        test_generator = datagen.flow_from_directory(
+        test_generator = datagen_TEST.flow_from_directory(
                                             self.test,
                                             target_size=(200,200),
                                             batch_size=self.batch_size)
@@ -38,11 +42,11 @@ class GeneratorCreator:
 
 
 
-
-PATH = 'data'
-TRAIN = 'data/train'
-VALID = 'data/valid'
-TEST = 'data/test'
-data = GeneratorCreator(TRAIN,VALID,TEST,5)
-train_datagen, valid_datagen, test_datagen = data.getGenerators()
+if __name__ == '__main__':
+    PATH = 'data'
+    TRAIN = 'data/train'
+    VALID = 'data/valid'
+    TEST = 'data/test'
+    data = GeneratorCreator(TRAIN,VALID,TEST,5)
+    train_datagen, valid_datagen, test_datagen = data.getGenerators()
 
