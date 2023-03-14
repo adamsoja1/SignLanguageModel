@@ -28,7 +28,7 @@ class DataReader:
     
     
         
-reader = DataReader('asl_dataset')
+reader = DataReader('main_data')
 
 image = reader.openImageFile()        
 

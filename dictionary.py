@@ -6,15 +6,25 @@ class Dictionary:
             raise Exception(f'Path {path} does not exist!')
         else:
             self.path = path
-        
+            
+
+        self.createDictionary()
+
     def collectData(self):
         return os.listdir(self.path)
     
     def createDictionary(self):
         signs = self.collectData()
-        dictionary = {}
+        self.dictionary = {}
         for number in range(len(signs)):
-            dictionary[number] = signs[number]
-        return dictionary
+            self.dictionary[number] = signs[number]
+        return self.dictionary
             
-    
+    def translate(self,element):
+        return self.dictionary[element]
+
+
+if __name__ == '__main__':
+    dct = Dictionary('main_data/asl_alphabet_train')
+    print(dct.translate(2))
+

@@ -2,8 +2,15 @@ from model import resnet50
 import tensorflow as tf
 from generator import GeneratorCreator
 from dictionary import Dictionary
+from sklearn.metrics import confusion_matrix,classification_report
+import numpy as np 
+from plots import make_plot
+import seaborn as sns
+import matplotlib.pyplot as plt
+import os
 
 
+NAME_EXPERIMENT = 'FIRST_MODEL_NEWDATA'
 PATH = 'data'
 TRAIN = 'data/train'
 VALID = 'data/valid'
@@ -13,10 +20,10 @@ data = GeneratorCreator(TRAIN,VALID,TEST,BATCH_SIZE)
 train_datagen, valid_datagen, test_datagen = data.getGenerators()
 
 
-WIDTH = 200
-HEIGHT = 200
-CHANNELS = 3
-NUM_CLASSES = 36
+WIDTH = 100
+HEIGHT = 100
+CHANNELS = 1
+NUM_CLASSES = len(os.listdir(TRAIN))
 OPTIMIZER  = tf.keras.optimizers.Adam(lr=0.00007)
 METRICS = ['accuracy',]
 LOSS = 'categorical_crossentropy'
@@ -30,8 +37,7 @@ history = model.fit(
             validation_data=valid_datagen,
             )
 
-from sklearn.metrics import confusion_matrix,classification_report
-import numpy as np 
+
 y_test = []
 y_pred = []
 
@@ -58,19 +64,23 @@ conf = confusion_matrix(y_test, y_pred)
 classification_report(y_test, y_pred)
 np.set_printoptions(threshold=np.inf)
 
-file = open("results/results_report_model3.txt","w")     
+file = open(f"results/{NAME_EXPERIMENT}_report.txt","w")     
 file.write(classification_report(y_test, y_pred))
 file.close()
 
-file = open("results/results_matrix_model3.txt","w")     
+file = open(f"results/{NAME_EXPERIMENT}_matrix.txt","w")     
 file.write(str(conf))
 file.close()
 
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+
 img = sns.heatmap(conf)
 fig = img.get_figure()
-fig.savefig("results/model3.png")
+fig.savefig("results/{NAME_EXPERIMENT}_mat.png")
 
-model.save('Third_model_100epochs.h5')
+model.save(f'{NAME_EXPERIMENT}.h5')
+
+
+
+make_plot(history,'accuracy','first_model')
+make_plot(history,'loss','first_model_loss')

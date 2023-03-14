@@ -11,3 +11,9 @@ First_model.h5
 
 models/
 /models
+
+/main_data
+main_data/
+
+/.vscode
+.vscode/

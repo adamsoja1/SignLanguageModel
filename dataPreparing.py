@@ -14,9 +14,9 @@ class Preparation:
         
         
     def splitImages(self,
-                    train_size,
-                    test_size,
-                    valid_size):
+                    train_size:float,
+                    test_size:float,
+                    valid_size:float):
         
         value = train_size + test_size + valid_size
         if value!=1:
@@ -42,7 +42,7 @@ class Preparation:
             valid = valid_size * len(photos)
             valid_photos = photos[int(test)+int(train):len(photos)]
             
-            "iterate each every photo from train,test,valid datasets"
+            "iterate each  photo from train,test,valid list elements"
             
             for photo in train_photos:
                 source =  f'{self.path}/{sign}/{photo}'
@@ -96,7 +96,7 @@ class Preparation:
         
     
     
-prep = Preparation('notsplitted')    
+prep = Preparation('main_data/asl_alphabet_train')    
 
 prep.splitImages(0.6, 0.2, 0.2)
 
