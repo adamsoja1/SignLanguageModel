@@ -2,8 +2,11 @@ import cv2
 import time
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 class Camera:
+
+    
     def __init__(self,interval):
         self.interval = interval
     
@@ -13,17 +16,25 @@ class Camera:
 
     def runCameraCapturer(self):
         camera = self.cameraReader()
+        global image
         while True:
             capture, frame = camera.read()
             if capture:
-                image = np.asarray(frame)
+                img = np.asarray(frame)
+                image = self.imagePreprocess(img)
                 
-            
-        time.sleep(self.interval)
+                
+                
+
+            plt.imshow(image,cmap='gray')
+            plt.show()
+            time.sleep(self.interval)
+        
 
     def imagePreprocess(self,image):
         if image.shape[-1] == 3:
-            image = cv2.COLOR_RGB2GRAY(image)
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
         image = cv2.resize(image,(100,100))
         return image
 
@@ -34,5 +45,6 @@ class Camera:
     def predictSign(self):
         pass
             
+
 
 
