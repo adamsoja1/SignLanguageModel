@@ -16,6 +16,9 @@ TRAIN = 'data/train'
 VALID = 'data/valid'
 TEST = 'data/test'
 BATCH_SIZE = 30
+
+
+
 data = GeneratorCreator(TRAIN,VALID,TEST,BATCH_SIZE)
 train_datagen, valid_datagen, test_datagen = data.getGenerators()
 
@@ -41,7 +44,8 @@ history = model.fit(
 y_test = []
 y_pred = []
 
-rang = int(500/25)
+r = round(2528/BATCH_SIZE)
+rang = int(r)
 
 for i in range(rang):
     x_test,y_t = next(test_datagen)
