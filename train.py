@@ -44,7 +44,7 @@ history = model.fit(
 y_test = []
 y_pred = []
 
-r = round(2528/BATCH_SIZE)
+r = round(25556/BATCH_SIZE)
 rang = int(r)
 
 for i in range(rang):
@@ -84,7 +84,9 @@ fig.savefig("results/{NAME_EXPERIMENT}_mat.png")
 
 model.save(f'{NAME_EXPERIMENT}.h5')
 
+import pandas as pd
+hist_df = pd.DataFrame(history.history) 
+hist_df.to_csv(f'{NAME_EXPERIMENT}.csv')
 
-
-make_plot(history,'accuracy','first_model')
-make_plot(history,'loss','first_model_loss')
+make_plot(hist_df,'accuracy','first_model')
+make_plot(hist_df,'loss','first_model_loss')
