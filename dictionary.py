@@ -35,9 +35,5 @@ if __name__ == '__main__':
     # close file
     f.close()
 
-with open('dictionary.txt') as f:
-    data = f.read()
-    
-d = ast.literal_eval(data)
 
 
